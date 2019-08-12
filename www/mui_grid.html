@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>mui grid</title>
+    <link href="https://cdn.bootcss.com/mui/3.7.1/css/mui.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/mui/3.7.1/js/mui.js"></script>
+    <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+    <style>
+        div {
+            border: solid gainsboro;
+        }
+        
+        div[class^="mui-col-"] {
+            border: solid greenyellow;
+        }
+        
+        #main_box {
+            border: solid blue;
+        }
+        
+        li {
+            border: solid red;
+            margin: 5px;
+            list-style-type: none;
+            /* line-height: 5px; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mui-content">
+        <div id="main_box">
+            <!-- 另一區 -->
+            <div class="mui-row">
+                <div class="mui-col-sm-3 mui-col-xs-12">
+                    <li class="mui-table-view-cell">
+                        <a class="mui-navigate-right">
+                            <div>
+                                {{mystr}}
+                            </div>
+                        </a>
+                    </li>
+                </div>
+                <div class="mui-col-sm-9 mui-col-xs-12">
+                    <li class="mui-table-view-cell" v-for="d in myobj">
+                        d.name,d.age
+                    </li>
+                </div>
+            </div>
+            <!-- 另一區 -->
+            <hr style="margin: 2em;border: solid purple" />
+            <div class="mui-row">
+                <div class="mui-col-sm-4 mui-col-xs-12">
+                    <li class="mui-table-view-cell">
+                        <a class="mui-navigate-right">
+                            11
+                        </a>
+                    </li>
+                </div>
+                <div class="mui-col-sm-4 mui-col-xs-12">
+                    <li class="mui-table-view-cell">
+                        <a class="mui-navigate-right">
+                            11
+                        </a>
+                    </li>
+                </div>
+                <div class="mui-col-sm-4 mui-col-xs-12">
+                    <li class="mui-table-view-cell">
+                        <a class="mui-navigate-right">
+                            11
+                        </a>
+                    </li>
+                </div>
+            </div>
+            <!-- 另一區 -->
+            <hr style="margin: 2em;border: solid purple" />
+            <div class="mui-row">
+                <div class="mui-col-sm-2 mui-col-xs-12">
+                    <li class="mui-table-view-cell">
+                        <a class="mui-navigate-right">
+                            11
+                        </a>
+                    </li>
+                </div>
+                <div class="mui-col-sm-3 mui-col-xs-12">
+                    <li class="mui-table-view-cell">
+                        <a class="mui-navigate-right">
+                            11
+                        </a>
+                    </li>
+                </div>
+                <div class="mui-col-sm-7 mui-col-xs-12">
+                    <li class="mui-table-view-cell">
+                        <a class="mui-navigate-right">
+                            11
+                        </a>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: ".mui-content",
+            data() {
+                return {
+                    mystr: "this is book !!",
+                    myobj: [{
+                        name: "hsiung",
+                        age: 19
+                    }, {
+                        name: "lisa",
+                        age: 52
+                    }, {
+                        name: "GG",
+                        age: 99
+                    }]
+                };
+            }
+        })
+    </script>
+</body>
+
+</html>
