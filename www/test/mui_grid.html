@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>mui grid</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mui/3.7.1/css/mui.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mui/3.7.1/js/mui.js"></script>
+
+    <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+    <style>
+        /* flex會破壞grid換行 */
+        
+        .mui-row {
+            /* 全部的DIV置中 */
+            /* display: flex; */
+            /* 垂直置中 */
+            /* align-items: center; */
+            /* 水平置中 */
+            /* justify-content: center; */
+            /* 行距 */
+            /* line-height: 100px; */
+            padding: 15px;
+        }
+        
+        #main_box {
+            /* 最外框 */
+            border: 30px solid rgb(230, 229, 206);
+            /* 文字置中 */
+            /* text-align: center; */
+        }
+        
+        div {
+            border: solid rgb(39, 54, 4);
+        }
+        
+        div[class^="mui-col-"] {
+            margin: 2px;
+            border: dotted red;
+        }
+        
+        li {
+            border: solid gray;
+            margin: 5px;
+            list-style-type: none;
+            /* line-height: 5px; */
+        }
+        
+        hr {
+            /* margin: 2em; */
+            border: dashed green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mui-content">
+        <div id="main_box">
+            <!-- 另1區 -->
+            <hr />
+            <div class="mui-row">
+                <div class="mui-col-sm-3 mui-col-xs-12">
+                    <li class="mui-table-view-cell">
+                        <a class="mui-navigate-right">
+                            <div>
+                                {{mystr}}
+                            </div>
+                        </a>
+                    </li>
+                </div>
+                <div class="mui-col-sm-8 mui-col-xs-12">
+                    <li class="mui-table-view-cell" v-for="d in myobj">
+                        {{d.name}},{{d.age}}
+                    </li>
+                </div>
+            </div>
+            <!-- 另2區 -->
+            <hr />
+            <div class="mui-row">
+                <div class="mui-col-sm-3 mui-col-xs-12">
+                    <li class="mui-table-view-cell">
+                        <a class="mui-navigate-right">
+                            <p>screen width : {{mywidth}}</p>
+                            <p>screen height : {{myheight}}</p>
+                        </a>
+                    </li>
+                </div>
+                <div class="mui-col-sm-4 mui-col-xs-12">
+                    <li class="mui-table-view-cell">
+                        <a class="mui-navigate-right">
+                            11
+                        </a>
+                    </li>
+                </div>
+                <div class="mui-col-sm-4 mui-col-xs-12">
+                    <li class="mui-table-view-cell">
+                        <a class="mui-navigate-right">
+                            11
+                        </a>
+                    </li>
+                </div>
+            </div>
+            <!-- 另3區 -->
+            <hr />
+            <div class="mui-row">
+                <div class="mui-col-sm-2 mui-col-xs-12">
+                    <li class="mui-table-view-cell">
+                        <a class="mui-navigate-right">
+                            11
+                        </a>
+                    </li>
+                </div>
+                <div class="mui-col-sm-3 mui-col-xs-12">
+                    <li class="mui-table-view-cell">
+                        <a class="mui-navigate-right">
+                            11
+                        </a>
+                    </li>
+                </div>
+                <div class="mui-col-sm-7 mui-col-xs-12">
+                    <li class="mui-table-view-cell">
+                        <a class="mui-navigate-right">
+                            11
+                        </a>
+                    </li>
+                </div>
+            </div>
+            <hr/>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: ".mui-content",
+            data() {
+                return {
+                    mystr: "this is book !!",
+                    mywidth: screen.width,
+                    myheight: screen.height,
+                    myobj: [{
+                        name: "hsiung",
+                        age: 19
+                    }, {
+                        name: "lisa",
+                        age: 52
+                    }, {
+                        name: "GG",
+                        age: 99
+                    }]
+                };
+            },
+            mounted() {
+                // alert('hi')
+            }
+        })
+    </script>
+</body>
+
+</html>

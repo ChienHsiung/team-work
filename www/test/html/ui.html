@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+		<title>My first BootstrapVue app</title>
+
+		<!-- Required Stylesheets -->
+		<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+		<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
+
+		<!-- Required scripts -->
+		<script src="https://unpkg.com/vue"></script>
+		<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+	</head>
+	<body>
+		<!-- Our application root element -->
+		<div id="app">
+
+			<b-container>
+				<b-jumbotron header="BootstrapVue" lead="Bootstrap v4 Components for Vue.js 2">
+					<p>For more information visit our website</p>
+					<b-btn variant="primary" href="https://bootstrap-vue.js.org/">More Info</b-btn>
+				</b-jumbotron>
+
+				<b-form-group horizontal :label-cols="4" description="Let us know your name." label="Enter your name">
+					<b-form-input v-model.trim="name"></b-form-input>
+				</b-form-group>
+
+				<b-alert variant="success" :show="showAlert">Hello {{ name }}</b-alert>
+
+			</b-container>
+			<div class="text-center my-3">
+				<b-button v-b-popover.hover="'I am popover content!'" title="Popover Title">Hover Me</b-button>
+			</div>
+			<div>
+				<b-alert show variant="primary">Primary Alert</b-alert>
+				<b-alert show variant="secondary">Secondary Alert</b-alert>
+				<b-alert show variant="success">Success Alert</b-alert>
+				<b-alert show variant="danger">Danger Alert</b-alert>
+				<b-alert show variant="warning">Warning Alert</b-alert>
+				<b-alert show variant="info">Info Alert</b-alert>
+				<b-alert show variant="light">Light Alert</b-alert>
+				<b-alert show variant="dark">Dark Alert</b-alert>
+			</div>
+			<div>
+				<b-button>Button</b-button>
+				<b-button variant="danger">Button</b-button>
+				<b-button variant="success">Button</b-button>
+				<b-button variant="outline-primary">Button</b-button>
+			</div>
+		</div>
+
+
+
+
+		<!-- Start running your app -->
+		<script>
+			window.app = new Vue({
+				el: '#app',
+				data: {
+					name: ''
+				},
+				computed: {
+					showAlert() {
+						return this.name.length > 4 ? true : false
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

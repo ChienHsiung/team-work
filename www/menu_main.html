@@ -92,6 +92,7 @@
         <a href="#func" onclick="MyFunction();return false;">主畫面</a>
         <a href="#services" onclick="MyFunction1();return false;">次畫面</a>
         <a href="#clients" onclick="MyFunction2();return false;">選單</a>
+        <a href="#clients" onclick="mytest();return false;">測試</a>
         <a href="#contact" onclick="mygrid();return false;">Grid</a>
         <button class="dropdown-btn">Dropdown 
     <i class="fa fa-caret-down"></i>
@@ -178,6 +179,10 @@
 
         function mygrid() {
             $("#main").load("mui_grid.html");
+        }
+
+        function mytest() {
+            $("#main").load("test/");
         }
     </script>
 

@@ -1,0 +1,104 @@
+<!DOCTYPE html5>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>VUE LAB</title>
+	<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
+	<script src="https://unpkg.com/vue"></script>
+	<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+	<script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+</head>
+
+<body>
+	<div id="app">
+		<div class="card-body">
+			<form @submit="formSubmit">
+				<strong>Name:</strong>
+				<input type="text" class="form-control" v-model="name" style="width:25%">		
+				<strong>Description:</strong>
+				<textarea class="form-control" v-model="description"></textarea>
+				<strong>ROW0:</strong>
+				<b-form-select class="form-control" v-model="row" :options="options"></b-form-select>
+				<strong>ROW:</strong>
+				<input type="text" class="form-control" v-model="row">
+				<br/>
+				<button class="btn btn-success">Submit</button>
+			</form>
+		</div>
+		<hr />
+
+		<div>
+			<b-form-select v-model="selected" :options="options"></b-form-select>
+			<b-form-select v-model="selected" :options="options" size="sm" class="mt-3"></b-form-select>
+			<div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
+		</div>
+
+		<hr />
+		<ol>
+			<li v-for="ii in info.data">
+				{{ii}}
+			</li>
+		</ol>
+	</div>
+
+	<script>
+		new Vue({
+			el: '#app',
+			data() {
+				return {
+					row: 6,
+					msg: 12,
+					msg1: 2,
+					info: 0,
+					name:"",
+					description:"",
+
+					selected: null,
+					options: [
+					{ value: null, text: 'Please select an option' },
+					{ value: 3, text: 'three' },
+					{ value: 6, text: 'sx' },
+					{ value: { C: '3PO' }, text: 'This is an option with object value' },
+					{ value: 'd', text: 'This one is disabled', disabled: true }
+					]
+				}
+			},
+			methods: {
+				formSubmit(e) {
+					e.preventDefault();
+					axios
+					.get('http://www.vietthuan.com:8080', {
+						params: {
+							username: "hsiung",
+							password: "223344",
+							row: this.row,
+						}
+					})
+					.then(response => (this.info = response))
+					.catch(function (error) { // 请求失败处理
+						console.log(error);
+					});
+				}},
+			mounted() {
+				axios
+					.get('http://www.vietthuan.com:8080', {
+						params: {
+							username: "hsiung",
+							password: "223344",
+							row: this.row,
+						}
+					})
+					.then(response => (this.info = response))
+					.catch(function (error) { // 请求失败处理
+						console.log(error);
+					});
+			}
+		})
+	</script>
+</body>
+
+</html>

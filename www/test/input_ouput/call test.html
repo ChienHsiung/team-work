@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>匯率輸入</title>
+    <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"></script>
+</head>
+
+<body>
+    <div id="wb_Form1">
+        <form @submit="to_srv">
+            <label for="Editbox1" id="Label1"
+                style="position:absolute;left:25px;top:17px;width:100%;height:13px;line-height:13px;z-index:0;">date</label>
+            <input type="text" id="Editbox1"
+                style="position:absolute;left:127px;top:15px;width:190px;height:15px;z-index:1;" v-model="date"
+                spellcheck="false">
+            <label for="Editbox2" id="Label2"
+                style="position:absolute;left:25px;top:47px;width:66px;height:13px;line-height:13px;z-index:2;">time</label>
+            <input type="text" id="Editbox2"
+                style="position:absolute;left:127px;top:45px;width:190px;height:15px;z-index:3;" v-model="time"
+                spellcheck="false">
+            <label for="Editbox3" id="Label3"
+                style="position:absolute;left:25px;top:77px;width:66px;height:13px;line-height:13px;z-index:4;">location</label>
+            <input type="text" id="Editbox3"
+                style="position:absolute;left:127px;top:75px;width:190px;height:15px;z-index:5;" v-model="location"
+                value="" spellcheck="false">
+            <label for="Editbox4" id="Label4"
+                style="position:absolute;left:24px;top:107px;width:95px;height:13px;line-height:13px;z-index:6;">vnd buy
+                usd</label>
+            <input type="text" id="Editbox4"
+                style="position:absolute;left:127px;top:105px;width:190px;height:15px;z-index:7;" v-model="vnd_buy_usd"
+                value="" spellcheck="false">
+            <label for="Editbox5" id="Label5"
+                style="position:absolute;left:24px;top:137px;width:95px;height:13px;line-height:13px;z-index:8;">usd buy
+                vnd</label>
+            <input type="text" id="Editbox5"
+                style="position:absolute;left:127px;top:135px;width:190px;height:15px;z-index:9;" v-model="usd_buy_vnd"
+                value="" spellcheck="false">
+            <label for="Editbox6" id="Label6"
+                style="position:absolute;left:24px;top:167px;width:95px;height:13px;line-height:13px;z-index:10;">vnd
+                buy twd</label>
+            <input type="text" id="Editbox6"
+                style="position:absolute;left:127px;top:165px;width:190px;height:15px;z-index:11;" v-model="vnd_buy_twd"
+                value="" spellcheck="false">
+            <label for="Editbox7" id="Label7"
+                style="position:absolute;left:25px;top:197px;width:94px;height:13px;line-height:13px;z-index:12;">twd
+                buy vnd</label>
+            <input type="text" id="Editbox7"
+                style="position:absolute;left:127px;top:195px;width:190px;height:15px;z-index:13;" v-model="twd_buy_vnd"
+                value="" spellcheck="false">
+
+            <input type="reset" id="Button1" name="Reset" value="Reset" style="position:absolute;left:45px;top:234px;width:144px;height:37px;z-index:14;">
+            <input type="submit" id="Button2" name="Submit" value="Submit" style="position:absolute;left:214px;top:234px;width:144px;height:37px;z-index:15;">   
+        </form>
+    </div>
+    <script>
+        new Vue({
+            el: "#wb_Form1",
+            data() {
+                return {
+                    // date: Date(Date.now()).toString('YYYY-mm-dd').split(' ')[3]+'/'+Date(Date.now()).toString('YYYY-mm-dd').split(' ')[2],
+                    date: moment().format('l'),
+                    time: moment().format('LT'),
+                    location: 'Ho Chi Minh',
+                    vnd_buy_usd: 0,
+                    usd_buy_vnd: 0,
+                    vnd_buy_twd: 0,
+                    twd_buy_vnd: 0,
+                }
+            },
+            // mounted() {
+            //     axios
+            //         .get('http://www.vietthuan.com:8080/test', {
+            //             params: {
+            //                 date: this.date,
+            //                 time: this.time,
+            //                 location: this.location,
+            //                 vnd_buy_usd: this.vnd_buy_usd,
+            //                 usd_buy_vnd: this.usd_buy_vnd,
+            //                 vnd_buy_twd: this.vnd_buy_twd,
+            //                 twd_buy_vnd: this.twd_buy_vnd,
+            //             }
+            //         })
+            //         .then(response => (this.info = response))
+            //         .catch(function (error) { // 请求失败处理
+            //             console.log(error);
+            //         });
+            // },
+            methods: {
+                to_srv(e) {
+                    e.preventDefault();
+                    axios
+                        .get('http://www.vietthuan.com:8080/test', {
+                            params: {
+                                date: this.date,
+                                time: this.time,
+                                location: this.location,
+                                vnd_buy_usd: this.vnd_buy_usd,
+                                usd_buy_vnd: this.usd_buy_vnd,
+                                vnd_buy_twd: this.vnd_buy_twd,
+                                twd_buy_vnd: this.twd_buy_vnd,
+                            }
+                        })
+                        .then(response => (this.info = response))
+                        .catch(function (error) { // 请求失败处理
+                            console.log(error);
+                        });
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
