@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head lang="utf-8">
+    <meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script> 
+    <style>
+	    canvas{
+	        -moz-user-select: none;
+	        -webkit-user-select: none;
+	        -ms-user-select: none;
+	    }    
+        .main {
+             
+            background-color: #fff;
+            /*width: 90%;*/
+            /*padding-bottom: 90%;*/
+        }
+        .main>div {
+            /*width: 10%;*/
+            /*padding-bottom: 20%;*/
+            border: 1% solid #fff;         
+            /*background-color: #E78326;*/
+            border-radius: 3%;
+            float: left;
+            margin: 1%;
+        }
+		.chart-container {
+			width: 500px;
+			margin-left: 40px;
+			margin-right: 40px;
+			margin-bottom: 40px;
+		}
+		.container {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: center;
+		}        
+    </style>
+</head>
+
+<body onload="displayLineChart();">
+    <div>
+		<div class="box1">
+			<canvas id="mypie" width="300" height="300"></canvas>
+		</div>
+		<div>
+			<canvas id="bar-chart" width="800" height="200"></canvas>
+		</div>           
+		<!--       
+		<div class="box1">
+			<canvas id="mypie1" width="300" height="300"></canvas>
+		</div>
+		<div class="box1">
+			<canvas id="mypie2" width="300" height="300"></canvas>
+		</div>
+		<div class="box1">
+			<canvas id="mypie3" width="300" height="300"></canvas>
+		</div>
+		<div class="box">
+			<canvas id="lineChart" width="800" height="200"></canvas>
+		</div>		           
+			-->
+    </div>
+
+	<script>
+		var dData = function() {
+			return Math.round(Math.random() * 90) + 10
+		};
+
+		var barChartData = {
+			labels: ["dD 1", "dD 2", "dD 3", "dD 4", "dD 5", "dD 6", "dD 7", "dD 8", "dD 9", "dD 10","11","12"],
+			datasets: [{
+			fillColor: "rgba(0,60,100,1)",
+			strokeColor: "pink",
+			data: [dData(), dData(), dData(), dData(), dData(), dData(), dData(), dData(), dData(), dData(),dData(),dData()]
+			}]
+		}
+		
+		var index = 12;
+		var ctx = document.getElementById("bar-chart").getContext("2d");
+		var barChartDemo = new Chart(ctx).Bar(barChartData, {
+			responsive: true,
+			barValueSpacing: 2
+		});
+
+		setInterval(function() {
+			barChartDemo.removeData();
+			barChartDemo.addData([dData()], "dD " + index);
+			index++;
+				}, 5000);			
+	</script>
+
+	<script>
+		var n = 0;
+		var data = [
+		    {value : dData(),color:"#F38630"},
+		    {value : dData(),color:"#E0E4CC"},
+		    {value : dData(),color:"#69D2E7"},
+        	{value : dData(),color:"#E0E4Cd"},
+			{value : dData(),color:"#F38630"},
+			{value : dData(),color:"#40AF26"},
+		];
+		var ctx = document.getElementById("mypie").getContext("2d");	
+		var myNewChart = new Chart(ctx).Pie(data);	
+
+		setInterval(function() {
+			// ctx.removeData();
+			// ctx.addData([dData()], "dD " + index);
+			var data = [
+		    {value : dData(),color:"#F38630"},
+		    {value : dData(),color:"#E0E4CC"},
+		    {value : dData(),color:"#69D2E7"},
+        	{value : dData(),color:"#E0E4Cd"},
+			{value : dData(),color:"#F38630"},
+			{value : dData(),color:"#40AF26"},
+		];			
+			var ctx = document.getElementById("mypie").getContext("2d");	
+			var myNewChart = new Chart(ctx).Pie(data);		
+			
+
+			n++
+			console.log(n)
+			index++;
+				}, 3000);						
+	</script>
+
+	<!-- 
+	<script>
+		var data = [
+		    {value: 19,color:"#F38630"},
+		    {value : 6,color:"#E0E4CC"},
+		    {value : 40,color : "#69D2E7"}
+		];
+		var ctx = document.getElementById("mypie1").getContext("2d");	
+		var myNewChart = new Chart(ctx).Pie(data);				
+	</script>
+
+	<script>
+		var data = [
+		    {value: 30,color:"#F38630"},
+		    {value : 50,color:"#E0E4CC"},
+		    {value : 100,color : "#69D2E7"}
+		];
+		var ctx = document.getElementById("mypie2").getContext("2d");	
+		var myNewChart = new Chart(ctx).Pie(data);				
+	</script>
+
+	<script>
+		var data = [
+		    {value: 300,color:"#F38630"},
+		    {value : 90,color:"#E0E4CC"},
+		    {value : 100,color : "#69D2E7"}
+		];
+		var ctx = document.getElementById("mypie3").getContext("2d");	
+		var myNewChart = new Chart(ctx).Pie(data);				
+	</script>	 
+
+	<script>
+		function displayLineChart() {
+		var data = {
+			labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13],
+			datasets: [
+				{
+					label: "Prime and Fibonacci",
+					fillColor: "rgba(220,220,220,0.2)",
+					strokeColor: "rgba(220,220,220,1)",
+					pointColor: "rgba(220,220,220,1)",
+					pointStrokeColor: "#fff",
+					pointHighlightFill: "#fff",
+					pointHighlightStroke: "rgba(220,220,220,1)",
+					data: [200, 370, 5, 7, 11, 13, 17, 19, 23, 29,80,1290,110]
+				}
+			]
+		};
+		var ctx = document.getElementById("lineChart").getContext("2d");
+		var options = { };
+		var lineChart = new Chart(ctx).Line(data, options);
+		}
+	</script>	
+-->
+</body>
+</html>

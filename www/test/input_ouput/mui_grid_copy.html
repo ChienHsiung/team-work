@@ -8,14 +8,14 @@
     <title>mui grid</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mui/3.7.1/css/mui.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mui/3.7.1/js/mui.js"></script>
-    
+
     <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
     <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
-    
+
     <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
     <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
     <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
-    
+
     <style>
         /* google chinese font */
         /* body{
@@ -23,7 +23,7 @@
             font-family: ‘cwTeXKai’, serif;
             font-weight: 300;
         } */
-
+        
         #main_box {
             /* 最外框 */
             border: 30px solid rgb(230, 229, 206);
@@ -48,36 +48,32 @@
             /* line-height: 5px; */
         }
         
-        /* li:nth-child(even) {
-                background-color: #f2f2f2
-        } */
-
         #result li:nth-child(odd) {
-        background:#d8d8176f;
+            background: #d8d8176f;
         }
-
+        
         #result li:nth-child(even) {
-        background: white;
+            background: white;
         }
-
+        
         hr {
             /* margin: 2em; */
             border: dashed green;
         }
-
         /* 螢幕大小改變 */
+        
         @media only screen and (max-width: 600px) {
             #main_box {
                 border: 30px solid red;
             }
         }
-
+        
         @media not screen and (max-width: 700px) {
             #main_box {
                 border: 30px solid rgb(164, 9, 184);
             }
         }
-
+        
         @media not screen and (max-width: 800px) {
             #main_box {
                 border: 30px solid rgb(0, 0, 0);
@@ -91,6 +87,7 @@
         <div id="main_box">
             <hr />
             <div class="mui-row">
+                <!-- 左邊 -->
                 <div class="mui-col-sm-5 mui-col-xs-12">
                     <li class="mui-table-view-cell">
                         <form @submit="formSubmit">
@@ -122,7 +119,7 @@
                                     <label for="mike">Mike</label>
                                     <br>
                                     <span>Checked names: {{ checkedNames }}</span>
-                                </div>   
+                                </div>
                                 <hr/>
                                 <br/>
                                 <button class="btn btn-success">Submit</button>
@@ -130,16 +127,19 @@
                         </form>
                     </li>
                 </div>
+
+                <!-- 右邊 -->
                 <div class="mui-col-sm-6 mui-col-xs-12" id="result">
                     <li class="mui-table-view-cell" v-for="d in myobj">
                         {{d.lab1}} | {{d.lab2}} | {{d.lab3}} | {{d.lab4}} | {{d.lab5}}
                     </li>
                     <li class="mui-table-view-cell" v-for="dd in info.data">
-                        {{dd.id}}|{{dd.bank}} | {{dd.date}} |{{dd.time}}|{{dd.ask}}|{{dd.bid}}
+                        <!-- {{dd}} -->
+                        {{dd.id}} | {{dd.bank}} | {{dd.date}} |{{dd.time}}|{{dd.ask}}|{{dd.bid}}
                     </li>
                 </div>
             </div>
-            <hr/>        
+            <hr/>
         </div>
     </div>
 
@@ -151,21 +151,9 @@
                     // 多重選單
                     checkedNames: [],
                     mystr: "this is book !!",
+                    // 螢幕寬長
                     mywidth: screen.width,
                     myheight: screen.height,
-                    myobj: [{
-                        lab1: "bank",
-                        lab2: "dtae",
-                        lab3: "time",
-                        lab4: "ask",
-                        lab5: "bid"
-                    }, {
-                        lab1: "bank",
-                        lab2: "dtae",
-                        lab3: "time",
-                        lab4: "ask",
-                        lab5: "bid"
-                    }],
                     lname: '',
                     fname: '',
                     row: 0,
@@ -175,7 +163,6 @@
                     name: "",
                     description: "黃建雄\n大雄",
                     selected: null,
-
                     options: [{
                         value: null,
                         text: 'Please select an option'
@@ -197,7 +184,22 @@
                         value: 'd',
                         text: 'This one is disabled',
                         disabled: true
-                    }]
+                    }],
+                    myobj: [{
+                        lab0: "id",
+                        lab1: "bank",
+                        lab2: "dtae",
+                        lab3: "time",
+                        lab4: "ask",
+                        lab5: "bid"
+                    }, {
+                        lab0: "id",
+                        lab1: "bank",
+                        lab2: "dtae",
+                        lab3: "time",
+                        lab4: "ask",
+                        lab5: "bid"
+                    }],                    
                 };
             },
             mounted() {
