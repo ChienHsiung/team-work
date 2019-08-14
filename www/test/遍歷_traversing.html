@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+        td{
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <table>
+            <tr v-for="(dd,index) in mydata" v-on:click="myfunc(this.event)"  v-bind:id=index>
+                <td>{{index + 1}}</td>
+                <td>{{dd.n1}}</td>
+                <td>{{dd.add}}</td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        var vv = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    mydata: [
+                        { n1: "xxx", add: 123 },
+                        { n1: 'zzzzz', add: 800 }
+                    ]
+                }
+            },
+            mounted(){
+                // mounted
+            },
+            methods:{
+                myfunc(e){
+                    console.log(e.currentTarget.id,e.path[0],e.currentTarget)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
